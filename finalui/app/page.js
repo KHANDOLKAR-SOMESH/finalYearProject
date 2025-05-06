@@ -6,10 +6,13 @@ import Oprnbutton from '@/components/oprnbutton'
 const page = () => {
   return (
     <>
-    <Navbar/ >
+   
+
+   <Navbar/ >
     <Subhero/>
    
     <Footer/>
+ 
     </>
   )
 }

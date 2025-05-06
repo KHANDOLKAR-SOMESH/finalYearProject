@@ -1,39 +1,37 @@
 import express from "express";
-import user from "../modles/user.Model.js";
-import history from "../modles/history.Model.js";
+// import userModel from "../models/user.Model.js";
+import userModel from "../modles/user.Model.js"
+
 
 const router = express.Router();
 
-// create a new user
-router.post('/user', async (req, res) => {
-    try {
-        const user = new User(req.body);
-        await user.save();
-        res.status(201).json(user);
-    } catch (err) {
-        res.status(400).json({ error: err.message });
-    }
+router.post("/register", async (req, res) => {
+  try {
+    const { username, email, password } = req.body;
+    const user = await userModel.create({ username, email, password });
+    res.status(201).json({ message: "User registered successfully", user });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
 });
 
-// get all history entries
-router.get('/history', async (req, res) => {
+router.post("/login", async (req, res) => {
     try {
-        const history = await History.find().populate('user');
-        res.status(200).json(history);
+      const { username, password } = req.body;
+  
+      const user = await userModel.findOne({ username, password });
+      if (!user) {
+        return res.status(400).json({ error: "Invalid credentials" });
+      }
+  
+      res.status(200).json({ message: `Welcome, ${user.username}!`, username: user.username });
     } catch (err) {
-        res.status(500).json({ error: err.message });
+      console.error(err);
+      res.status(500).json({ error: "Login failed" });
     }
-});
+  });
 
-// add new history
-router.post('/history', async (req, res) => {
-    try {
-        const history = new History(req.body);
-        await history.save();
-        res.status(201).json(history);
-    } catch (err) {
-        res.status(400).json({ error: err.message });
-    }
-});
+
 
 export default router;

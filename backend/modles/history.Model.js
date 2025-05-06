@@ -1,24 +1,25 @@
 import mongoose from "mongoose";
 
-const historySchema = new mongoose.Schema({
-    user:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:"user",
-        required :true,
+const userSchema = new mongoose.Schema({
+    username : {
+        type : String,
+        required:true,
+        unique:true,
+        minlength:3,
     },
-    
-    details:{
-        type:String,
-        required:true
-    },
-    result:{
+    email:{
         type:String,
         required:true,
-
+        unique:true,
+        lowercase:true,
+    },
+    password:{
+        type:String,
+        required:true,
+        lowercase:true,
     }
+}, { timestamps: true })
 
-},{ timestamps: true });
-
-const history= mongoose.model("history", historySchema);
+const  user = mongoose.model("history",userSchema);
 
 export default history;

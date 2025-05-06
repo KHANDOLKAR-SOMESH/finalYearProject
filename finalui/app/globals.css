@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-body{
+body,hi{
     overflow-x: hidden;
 }
 

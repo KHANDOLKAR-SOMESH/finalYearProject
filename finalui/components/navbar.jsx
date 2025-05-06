@@ -3,8 +3,8 @@ import Link from "next/link";
 
 const list = [
   { href: "/", link: "home" },
-  { href: "about", link: "about" },
-  { href: "help", link: "help" },
+  { href: "/login", link: "login" },
+  { href: "/register", link: "register" },
   { href: "contact", link: "contact us" },
 ];
 
@@ -21,15 +21,15 @@ const navbar = () => {
             className="h-8"
             alt="Flowbite Logo"
           />
-          <span className="self-center text-teal-600 text-2xl font-semibold whitespace-nowrap dark:text-white">
+          <span className="self-center text-center text-teal-600 text-xs md:text-2xl font-semibold whitespace-nowrap dark:text-white">
             MEDITECH
           </span>
         </a>
 
-        <ul className="flex gap-3 m-4 text-teal-600">
+        <ul className="flex items-center gap-1 m-2 md:gap-3 md:m-4 text-white">
           {list.map((ele, index) => (
             <li key={index}>
-              <a href="ele.href">{ele.link}</a>
+              <Link href={ele.href}>{ele.link}</Link>
             </li>
           ))}
         </ul>
