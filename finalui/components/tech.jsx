@@ -7,7 +7,7 @@ const tech = ({subtitle , desc}) => {
         <span className="bg-green-500/20 text-green-400 px-3 py-1 rounded-full text-sm">
           {subtitle}
         </span>
-        <h2 className="text-xl text-xs md:text-xl font-bold mt-4">
+        <h2 className="text-xl  md:text-xl font-bold mt-4">
           {desc}
         </h2>
        
